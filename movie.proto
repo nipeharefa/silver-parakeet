@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package model;
+
+message Movie {
+    string title = 1;
+    string year = 2;
+    string type = 3;
+    string imdbID = 4;
+    string poster = 5;
+}
+
+message Movies {
+    repeated Movie list = 1;
+}
+
+message GetMoviesParam {
+    string searchWord = 1;
+    int32 page = 2;
+}
+
+
+service MovieService {
+    rpc GetMovies(GetMoviesParam) returns (Movies) {}
+}
