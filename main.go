@@ -45,7 +45,7 @@ func main() {
 		apiGateway := gateway.NewAPIGateway()
 		apiGateway.Run()
 
-	case "movie-service":
+	case "search-service":
 		search.New().Run()
 	}
 }

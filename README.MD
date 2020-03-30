@@ -21,5 +21,5 @@ go run *.go api-gateway
 ### Run Search Service
 
 ```shell
-go run *.go movie-service
+go run *.go search-service
 ```

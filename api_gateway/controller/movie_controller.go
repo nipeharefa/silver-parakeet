@@ -38,6 +38,10 @@ func (m *movieController) Search(c echo.Context) error {
 		SearchWord: s,
 	}
 
-	movies, _ := m.movieClient.GetMovies(ctx, in)
+	movies, err := m.movieClient.GetMovies(ctx, in)
+	if err != nil {
+		return c.JSON(http.StatusOK, make([]proto.Movie, 0))
+	}
+
 	return c.JSON(http.StatusOK, movies.List)
 }

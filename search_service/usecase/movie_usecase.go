@@ -8,7 +8,7 @@ import (
 )
 
 type (
-	movie struct {
+	Movie struct {
 		Title  string `json:"Title"`
 		Year   string `json:"Year"`
 		ImdbID string `json:"imdbID"`
@@ -16,14 +16,14 @@ type (
 		Poster string `json:"Poster"`
 	}
 
-	movieResponse struct {
-		Search       []movie `json:"Search"`
+	MovieResponse struct {
+		Search       []Movie `json:"Search"`
 		TotalRequest string  `json:"totalResults"`
 		Response     string  `json:"Response"`
 	}
 
 	MovieUsecase interface {
-		GetMoviesFromAPI(string, int) movieResponse
+		GetMoviesFromAPI(string, int) MovieResponse
 	}
 
 	movieUsecase struct {
@@ -38,7 +38,7 @@ func NewMovieUsecase(apiKey string) MovieUsecase {
 	return &movieUsecase{httpClient, apiKey}
 }
 
-func (m *movieUsecase) GetMoviesFromAPI(s string, page int) movieResponse {
+func (m *movieUsecase) GetMoviesFromAPI(s string, page int) MovieResponse {
 
 	if page < 1 {
 		page = 1
@@ -55,7 +55,7 @@ func (m *movieUsecase) GetMoviesFromAPI(s string, page int) movieResponse {
 
 	u.RawQuery = q.Encode()
 
-	result := movieResponse{}
+	result := MovieResponse{}
 
 	r := utils.RequestOptions{
 		FullPath: u.String(),
